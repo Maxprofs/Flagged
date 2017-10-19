@@ -1,0 +1,16 @@
+[
+{
+  "modid": "flagged",
+  "name": "Flagged",
+  "description": "Flags, Flags, Flags!!!!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["GenDeathrow"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

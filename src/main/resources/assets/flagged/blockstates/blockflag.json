@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "normal": { "model": "" }
+        "inventory": [{}],
+        "facing":{
+            "north": {"model": ""},
+            "south": {"model": ""},
+            "west": {"model": ""},
+            "east": {"model": ""}
+        }
+	}
+  
+}
