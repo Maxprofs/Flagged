@@ -133,13 +133,19 @@ public class EntityItemFlag extends EntityHangingSpecial{
 	{
 		 for( y1 = 0; y1 < pointHeight; y1++ )            // Loop Through The Y Plane
 		 {
-		        hold=points[0][y1][2];           // Store Current Value One Left Side Of Wave
-		        for( x1 = 0; x1 < (pointWidth-1); x1++)     // Loop Through The X Plane
+		        //hold=points[0][y1][2];           // Store Current Value One Left Side Of Wave
+			 	hold=points[(pointWidth-1)][y1][2]; 
+		        //for( x1 = 0; x1 < (pointWidth-1); x1++)     // Loop Through The X Plane
+		        for( x1 = (pointWidth-1); x1 > 0; x1--)     // Loop Through The X Plane
 		        {
 		            // Current Wave Value Equals Value To The Right
-		            points[x1][y1][2] = points[x1+1][y1][2];
+		            //points[x1][y1][2] = points[x1+1][y1][2];
+		        	
+		        	points[x1][y1][2] = points[x1-1][y1][2];
+		        	//points[x1+1][y1][2] = points[x1][y1][2];
 		        }
-		        points[(pointWidth-1)][y1][2]=hold;          // Last Value Becomes The Far Left Stored Value
+		        //points[(pointWidth-1)][y1][2]=hold;          // Last Value Becomes The Far Left Stored Value
+		        points[0][y1][2]=hold;
 		 }
 	}
 

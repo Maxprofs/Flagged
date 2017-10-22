@@ -5,10 +5,10 @@
   "description": "Flags, Flags, Flags!!!!",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "https://minecraft.curseforge.com/projects/flagged",
   "updateUrl": "",
   "authorList": ["GenDeathrow"],
-  "credits": "",
+  "credits": "Artist: Mondad",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
