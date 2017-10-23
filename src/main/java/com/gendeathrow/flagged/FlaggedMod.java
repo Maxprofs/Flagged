@@ -5,8 +5,6 @@ import java.io.IOException;
 import com.gendeathrow.flagged.client.gui.GuiHandler;
 import com.gendeathrow.flagged.entity.EntityItemFlag;
 import com.gendeathrow.flagged.init.FLAGS;
-import com.gendeathrow.flagged.init.ModBlocks;
-import com.gendeathrow.flagged.init.ModItems;
 import com.gendeathrow.flagged.init.ModRecipes;
 import com.gendeathrow.flagged.init.ModReference;
 import com.gendeathrow.flagged.network.FlagSelectPacket;
@@ -52,8 +50,7 @@ public class FlaggedMod {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		ModItems.init();
-		ModBlocks.init();
+
 		PROXY.registerTileEntities();
 		PROXY.registerItemAndBlockRenderers();
 		ModRecipes.addRecipes();

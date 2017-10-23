@@ -273,7 +273,6 @@ public abstract class EntityHangingSpecial extends Entity{
 	            if (!this.isDead && !this.world.isRemote)
 	            {
 	                this.setDead();
-	                this.setBeenAttacked();
 	                this.onBroken(source.getTrueSource());
 	            }
 

@@ -9,29 +9,26 @@ import com.gendeathrow.flagged.items.ItemFlag;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.registries.IForgeRegistry;
 
+@EventBusSubscriber
 public class ModItems {
 	
 	//Example entry you just need to add 1 Line for the Item Now!!!!
 //	public static final Item weighted_club = new WeightedClub();
-	public static final Item flag = new ItemFlag(EntityItemFlag.class);
+	public static final Item flag = new ItemFlag(EntityItemFlag.class).setRegistryName(new ResourceLocation(ModReference.MOD_ID, "flag")).setUnlocalizedName(ModReference.MOD_ID + ".flag" );
   
-	public static void init() {
-		try {
-			for (Field field : ModItems.class.getDeclaredFields()) {
-				Object obj = field.get(null);
-				if (obj instanceof Item) {
-					Item item = (Item) obj;
-					String name = field.getName().toLowerCase(Locale.ENGLISH);
-
-					GameRegistry.register(item.setRegistryName(ModReference.MOD_ID, name).setUnlocalizedName(ModReference.MOD_ID + "." + name));
-				}
-			}
-		} catch (IllegalAccessException e) {
-			throw new RuntimeException(e);
-		}
+	public static IForgeRegistry<Item> itemRegistry;
+	
+	@SubscribeEvent
+	public static void itemRegistry(RegistryEvent.Register<Item> event) {
+		 itemRegistry = event.getRegistry();
+		 itemRegistry.register(flag);
 	}
 
 	public static void registerRenderers() {

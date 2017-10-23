@@ -7,13 +7,14 @@ import com.gendeathrow.flagged.init.ModReference;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelMinecart;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.culling.ICamera;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
@@ -54,7 +55,7 @@ public class EntityFlagRenderer extends Render<EntityItemFlag> {
         
 			Tessellator tessellator = Tessellator.getInstance();
 
-			VertexBuffer worldrenderer = tessellator.getBuffer();
+			BufferBuilder worldrenderer = tessellator.getBuffer();
 			RenderHelper.disableStandardItemLighting();
 
 			GlStateManager.shadeModel(GL11.GL_SMOOTH);
@@ -97,7 +98,7 @@ public class EntityFlagRenderer extends Render<EntityItemFlag> {
 		GlStateManager.popMatrix();
     }
 	
-	public void drawFlag(Tessellator tessellator, VertexBuffer worldrenderer, float[][][] pointMesh, int meshWidth, int meshHeight)
+	public void drawFlag(Tessellator tessellator, BufferBuilder worldrenderer, float[][][] pointMesh, int meshWidth, int meshHeight)
 	{
 		int x1, y1;
 	    float float_x, float_y, float_xb, float_yb;  

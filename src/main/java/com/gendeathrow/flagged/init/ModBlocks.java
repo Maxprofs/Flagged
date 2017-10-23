@@ -1,9 +1,7 @@
 package com.gendeathrow.flagged.init;
 
-import java.lang.reflect.Field;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -11,8 +9,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.registries.IForgeRegistry;
 
+@EventBusSubscriber
 public class ModBlocks {
 	private static final List<Block> BLOCKS = new LinkedList<Block>();
 	
@@ -21,36 +23,58 @@ public class ModBlocks {
 	
 	//public static final Block BLOCKFLAG = new BlockFlag(Material.CLOTH);
 
-	public static void init() {
-		try {
-			for (Field field : ModBlocks.class.getDeclaredFields()) {
-				Object obj = field.get(null);
-				if (obj instanceof Block) {
-					Block block = (Block) obj;
-					String name = field.getName().toLowerCase(Locale.ENGLISH);
-					registerBlock(name, block);
-				}
-			}
-		} catch (IllegalAccessException e) {
-			throw new RuntimeException(e);
-		}
+//	public static void init() {
+//		try {
+//			for (Field field : ModBlocks.class.getDeclaredFields()) {
+//				Object obj = field.get(null);
+//				if (obj instanceof Block) {
+//					Block block = (Block) obj;
+//					String name = field.getName().toLowerCase(Locale.ENGLISH);
+//					registerBlock(name, block);
+//				}
+//			}
+//		} catch (IllegalAccessException e) {
+//			throw new RuntimeException(e);
+//		}
+//
+//	}
+//
+//	
+//	
+//	
+	
+	
+	
+	
+	
+	
+
+	public static IForgeRegistry<Block> blockRegistry; 
+	@SubscribeEvent
+	public static void blockRegistry(RegistryEvent.Register<Block> event) {
+	blockRegistry = event.getRegistry();
 
 	}
 
-	public static void registerBlock(String name, Block block) {
-		BLOCKS.add(block);
-
-		GameRegistry.register(block.setRegistryName(ModReference.MOD_ID, name).setUnlocalizedName(ModReference.MOD_ID + "." + name));
-
-		ItemBlock item;
-		if (block instanceof IHasCustomItem)
-			item = ((IHasCustomItem) block).getItemBlock();
-		else
-			item = new ItemBlock(block);
-
-		GameRegistry.register((ItemBlock) item.setRegistryName(ModReference.MOD_ID, name).setUnlocalizedName(ModReference.MOD_ID + "." + name));
-	}
-
+	
+	
+	
+	
+	
+//	public static void registerBlock(String name, Block block) {
+//		BLOCKS.add(block);
+//
+//		GameRegistry.register(block.setRegistryName(ModReference.MOD_ID, name).setUnlocalizedName(ModReference.MOD_ID + "." + name));
+//
+//		ItemBlock item;
+//		if (block instanceof IHasCustomItem)
+//			item = ((IHasCustomItem) block).getItemBlock();
+//		else
+//			item = new ItemBlock(block);
+//
+//		GameRegistry.register((ItemBlock) item.setRegistryName(ModReference.MOD_ID, name).setUnlocalizedName(ModReference.MOD_ID + "." + name));
+//	}
+//
 	public static void registerRenderers() {
 		for (Block block : BLOCKS)
 			if (block instanceof ISubBlocksBlock) {
@@ -65,12 +89,11 @@ public class ModBlocks {
 
 	public static void registerTileEntity()
 	{
-		//GameRegistry.registerTileEntity(TileEntityFlag.class, "flagtileentity");
+
 	}
 	
 	public static void registerTileEntityRenderer()
 	{
-		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFlag.class, new FlagEntityRenderer());
 	}
 	
 	public static interface IHasCustomItem {

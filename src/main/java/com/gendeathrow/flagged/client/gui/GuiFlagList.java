@@ -159,13 +159,7 @@ public class GuiFlagList extends GuiListExtended {
     	}
 
     	@Override
-    	public void setSelected(int slotIndex, int insideLeft, int yPos) {
-    		
-    	}
-
-    	@Override
-    	public void drawEntry(int slotIndex, int x, int y, int listWidth, int slotHeight, int mouseX, int mouseY, boolean isSelected) {
-    		
+    	public void drawEntry(int slotIndex, int x, int y, int listWidth, int slotHeight, int mouseX, int mouseY, boolean isSelected, float partialTicks) {
     		if(this.parent.isSelected(slotIndex))
     			Minecraft.getMinecraft().fontRenderer.drawString(flag.getLocalizedName(), x, y, Color.YELLOW.getRGB());
     		else
@@ -182,5 +176,11 @@ public class GuiFlagList extends GuiListExtended {
     	public void mouseReleased(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY) {
     		
     	}
+
+		@Override
+		public void updatePosition(int slotIndex, int x, int y, float partialTicks) {
+			
+		}
+
     }
 }
